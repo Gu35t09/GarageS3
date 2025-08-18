@@ -3,10 +3,12 @@ username: mattia
 shell: /bin/bash
 
 packages:
- - qemu-guest-agent
- - python3-passlib # needed for password encryption when creating user
- - make
- - build-essential
+  - apt-transport-https
+  - build-essential
+  - ca-certificates
+  - curl
+  - make
+  - qemu-guest-agent
 
 # SSH security and config
 security_ssh_port: 22
@@ -19,3 +21,10 @@ security_ssh_x11_forwarding: "no"
 security_ssh_restart_handler_state: restarted
 security_ssh_allowed_users: [mattia]
 security_ssh_allowed_groups: [mattia]
+
+# Docker related stuff
+dockeraddon:
+ - docker-ce-cli 
+ - containerd.io
+ - docker-buildx-plugin 
+ - docker-compose-plugin

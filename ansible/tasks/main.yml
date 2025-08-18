@@ -1,6 +1,6 @@
 ---
   - import_tasks: essential.yml
+  - import_tasks: docker.yml # this need to be done before user.yml the user is added to the docker group
   - import_tasks: user.yml
   - import_tasks: ssh.yml
-  - import_tasks: docker.yml
   - import_tasks: garage.yml
