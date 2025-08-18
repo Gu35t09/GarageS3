@@ -28,3 +28,9 @@ dockeraddon:
  - containerd.io
  - docker-buildx-plugin 
  - docker-compose-plugin
+
+# Garage files structure
+base_dir: /srv/docker/garage
+subdirs:
+  - meta
+  - data
