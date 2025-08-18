@@ -1,0 +1,30 @@
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/{{ ansible_facts['distribution']|lower }}/gpg
+    # {{ ansible_facts['distribution']|lower }} --> this get the information about the OS directly from the target and set it all to lower
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/{{ ansible_facts['distribution']|lower }} {{ ansible_facts['lsb']['codename']}} stable
+    # {{ ansible_facts['distribution']|lower }} --> this get the information about the OS directly from the target and set it all to lower
+    # {{ ansible_facts['lsb']['codename']}} --> this get the VERSION CODENAME form the target, it's the same as echo "$VERSION_CODENAME" used in the docker docs
+    state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+
+- name: Update apt and install docker various componets
+  apt:
+    name: "{{ dockeraddon }}"
+    state: latest
+    update_cache: true
+
+- name: Create docker directory if it does not exist
+  ansible.builtin.file:
+    path: /srv/docker
+    state: directory
+    mode: '0755'
