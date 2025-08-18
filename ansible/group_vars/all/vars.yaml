@@ -1,0 +1,21 @@
+username: mattia
+
+shell: /bin/bash
+
+packages:
+ - qemu-guest-agent
+ - python3-passlib # needed for password encryption when creating user
+ - make
+ - build-essential
+
+# SSH security and config
+security_ssh_port: 22
+security_ssh_password_authentication: "no"
+security_ssh_permit_root_login: "no"
+security_ssh_usedns: "yes"
+security_ssh_permit_empty_password: "no"
+security_ssh_gss_api_authentication: "no"
+security_ssh_x11_forwarding: "no"
+security_ssh_restart_handler_state: restarted
+security_ssh_allowed_users: [mattia]
+security_ssh_allowed_groups: [mattia]
