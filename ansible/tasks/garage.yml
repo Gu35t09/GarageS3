@@ -1,10 +1,10 @@
 - name: Create each Garage subdirectory
   file:
-    path: "{{ base_dir }}/{{ item }}"
+    path: "{{ garage_base_dir }}/{{ item }}"
     state: directory
     mode: "0755"
     owner: "{{ username }}"
-  loop: "{{ subdirs }}"
+  loop: "{{ garage_subdirs }}"
 
 - name: Apply docker compose template
   template:

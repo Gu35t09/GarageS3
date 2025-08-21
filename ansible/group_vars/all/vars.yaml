@@ -30,7 +30,13 @@ dockeraddon:
  - docker-compose-plugin
 
 # Garage files structure
-base_dir: /srv/docker/garage
-subdirs:
+garage_base_dir: /srv/docker/garage
+garage_subdirs:
   - meta
   - data
+
+# Traefik files structure
+traefik_base_dir: /srv/docker/garage
+traefik_subdirs:
+  - logs
+  - config
