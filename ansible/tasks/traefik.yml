@@ -1,0 +1,27 @@
+- name: Create each Traefik subdirectory
+  file:
+    path: "{{ traefik_base_dir }}/{{ item }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ username }}"
+  loop: "{{ traefik_subdirs }}"
+
+- name: Apply docker compose template
+  template:
+    src: templates/traefik/docker-compose.yaml.j2
+    dest: /srv/docker/traefik/docker-compose.yaml
+
+- name: Apply traefik.yaml template
+  template:
+    src: templates/traefik/traefik.yaml.j2
+    dest: /srv/docker/traefik/config/traefik.yaml
+
+- name: Apply Traefik config.yaml template
+  template:
+    src: templates/traefik/config.yaml.j2
+    dest: /srv/docker/traefik/config/config.yaml
+
+- name: Apply Traefik cloudflare token template
+  template:
+    src: templates/traefik/cf-token.j2
+    dest: /srv/docker/traefik/cf-token

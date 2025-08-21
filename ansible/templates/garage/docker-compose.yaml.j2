@@ -1,0 +1,24 @@
+networks:
+  proxy:
+    external: true
+
+services:
+  garage:
+    image: dxflrs/garage:v2.0.0
+    restart: unless-stopped
+    container_name: garage
+    networks:
+        - proxy
+    volumes:
+      - /srv/docker/garage/garage.toml:/etc/garage.toml
+      - /srv/docker/garage/meta:/var/lib/garage/meta
+      - /srv/docker/garage/data:/var/lib/garage/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.garage-s3.rule=Host(`garage.greyroom.net`)"
+      - "traefik.http.routers.garage-s3.entrypoints=websecure"
+      - "traefik.http.routers.garage-s3.service=garage-s3-service"
+      - "traefik.http.routers.garage-s3.tls=true"
+      - "traefik.http.services.garage-s3-service.loadbalancer.server.url=http://garage:3900"
+      - "traefik.http.routers.garage-s3.tls.certresolver=myresolver"
+      - "traefik.http.routers.garage-s3.tls.domains[0].main=garage.greyroom.net"

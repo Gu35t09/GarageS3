@@ -3,15 +3,16 @@
     path: "{{ base_dir }}/{{ item }}"
     state: directory
     mode: "0755"
+    owner: "{{ username }}"
   loop: "{{ subdirs }}"
 
 - name: Apply docker compose template
   template:
-    src: templates/docker-compose.yaml.j2
+    src: templates/garage/docker-compose.yaml.j2
     dest: /srv/docker/garage/docker-compose.yaml
 
 - name: Apply garage config template
   template:
-    src: templates/garage.toml.j2
+    src: templates/garage/garage.toml.j2
     dest: /srv/docker/garage/garage.toml
 
