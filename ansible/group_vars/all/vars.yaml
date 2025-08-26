@@ -36,7 +36,7 @@ garage_subdirs:
   - data
 
 # Traefik files structure
-traefik_base_dir: /srv/docker/garage
+traefik_base_dir: /srv/docker/traefik
 traefik_subdirs:
   - logs
   - config

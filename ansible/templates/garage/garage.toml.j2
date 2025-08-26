@@ -8,6 +8,7 @@ replication_factor = 1 # changed, default 3
 compression_level = 2
 
 rpc_bind_addr = "[::]:3901"
+rpc_public_addr = "localhost:3901" # Required
 rpc_secret = "{{ garage_rpc_secret }}"
 
 [s3_api]
@@ -19,3 +20,8 @@ root_domain = ".s3.garage.greyroom.net"
 bind_addr = "[::]:3902"
 root_domain = ".web.garage.greyroom.net"
 index = "index.html"
+
+[admin]
+api_bind_addr = "[::]:3903"
+admin_token = "{{ garage_admin_token }}"
+metrics_token = "{{ garage_metrics_token }}"

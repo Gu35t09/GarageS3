@@ -24,6 +24,10 @@
     state: latest
     update_cache: true
 
+- name: Create "proxy" network 
+  community.docker.docker_network:
+    name: proxy
+
 - name: Create docker directory if it does not exist
   ansible.builtin.file:
     path: /srv/docker
